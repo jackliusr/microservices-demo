@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "money",
+    srcs = ["money.go"],
+    importpath = "",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_googlecloudplatform_microservices_demo_src_frontend//genproto:go_default_library"],
+)
+
+go_test(
+    name = "lib_test",
+    srcs = ["money_test.go"],
+    embed = [":money"],
+    deps = ["@com_github_googlecloudplatform_microservices_demo_src_frontend//genproto:go_default_library"],
+)

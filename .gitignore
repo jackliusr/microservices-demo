@@ -12,3 +12,7 @@ pkg/
 .project
 .eclipse.buildship.core.prefs
 release/wi-kubernetes-manifests.yaml
+bazel-bin
+bazel-microservices-demo
+bazel-out
+bazel-testlogs
