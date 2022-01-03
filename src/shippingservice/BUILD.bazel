@@ -39,7 +39,7 @@ go_test(
     srcs = ["shippingservice_test.go"],
     embed = [":lib"],
     deps = [
-        "@com_github_googlecloudplatform_microservices_demo_src_shippingservice//genproto:go_default_library",
+        "//src/shippingservice/genproto:hipstershop",  # keep
         "@org_golang_x_net//context:go_default_library",
     ],
 )
