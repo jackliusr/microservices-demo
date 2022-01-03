@@ -16,6 +16,9 @@ syntax = "proto3";
 
 package hipstershop;
 
+option java_package="hipstershop";
+option java_outer_classname="Demo";
+
 // -----------------Cart service-----------------
 
 service CartService {

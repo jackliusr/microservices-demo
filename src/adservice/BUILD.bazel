@@ -1,0 +1,80 @@
+load("@io_grpc_grpc_java//:java_grpc_library.bzl", "java_grpc_library")
+
+java_grpc_library(
+    name = "_health_java_grpc",
+    srcs = ["@io_grpc_grpc_proto//:health_proto"],
+    visibility = ["//visibility:private"],
+    deps = ["@io_grpc_grpc_proto//:health_java_proto"],
+)
+
+java_binary(
+    name = "AdService",
+    srcs = ["src/main/java/hipstershop/AdService.java"],
+    main_class = "AdService",
+    resources = glob(
+        ["src/main/resources/**"],
+    ),
+    runtime_deps = [
+        "@io_grpc_grpc_java//netty",
+    ],
+    deps = [
+        ":_health_java_grpc",
+        "//src/adservice/src/main/proto:hipstershop_java_grpc",
+        "//src/adservice/src/main/proto:hipstershop_java_proto",
+        "//src/adservice/src/main/proto:hipstershop_proto",
+        "@com_google_protobuf//:protobuf_java",
+        "@com_google_protobuf//:protobuf_java_util",
+        "@io_grpc_grpc_java//api",
+        "@io_grpc_grpc_java//protobuf",
+        "@io_grpc_grpc_java//stub",
+        "@maven//:com_google_api_grpc_proto_google_common_protos",
+        "@maven//:com_google_code_findbugs_jsr305",
+        "@maven//:com_google_code_gson_gson",
+        "@maven//:com_google_guava_guava",
+        "@maven//:io_grpc_grpc_services",
+        "@maven//:io_opencensus_opencensus_api",
+        "@maven//:io_opencensus_opencensus_contrib_grpc_metrics",
+        "@maven//:io_opencensus_opencensus_contrib_grpc_util",
+        "@maven//:io_opencensus_opencensus_contrib_http_util",
+        "@maven//:io_opencensus_opencensus_exporter_stats_stackdriver",
+        "@maven//:io_opencensus_opencensus_exporter_trace_jaeger",
+        "@maven//:io_opencensus_opencensus_exporter_trace_stackdriver",
+        "@maven//:org_apache_logging_log4j_log4j_api",
+    ],
+)
+
+java_binary(
+    name = "AdServiceClient",
+    srcs = ["src/main/java/hipstershop/AdServiceClient.java"],
+    main_class = "AdServiceClient",
+    resources = glob(
+        ["src/main/resources/**"],
+    ),
+    runtime_deps = [
+        "@io_grpc_grpc_java//netty",
+    ],
+    deps = [
+        ":_health_java_grpc",
+        "//src/adservice/src/main/proto:hipstershop_java_grpc",
+        "//src/adservice/src/main/proto:hipstershop_java_proto",
+        "//src/adservice/src/main/proto:hipstershop_proto",
+        "@com_google_protobuf//:protobuf_java",
+        "@com_google_protobuf//:protobuf_java_util",
+        "@io_grpc_grpc_java//api",
+        "@io_grpc_grpc_java//protobuf",
+        "@io_grpc_grpc_java//stub",
+        "@maven//:com_google_api_grpc_proto_google_common_protos",
+        "@maven//:com_google_code_findbugs_jsr305",
+        "@maven//:com_google_code_gson_gson",
+        "@maven//:com_google_guava_guava",
+        "@maven//:io_grpc_grpc_services",
+        "@maven//:io_opencensus_opencensus_api",
+        "@maven//:io_opencensus_opencensus_contrib_grpc_metrics",
+        "@maven//:io_opencensus_opencensus_contrib_grpc_util",
+        "@maven//:io_opencensus_opencensus_contrib_http_util",
+        "@maven//:io_opencensus_opencensus_exporter_stats_stackdriver",
+        "@maven//:io_opencensus_opencensus_exporter_trace_jaeger",
+        "@maven//:io_opencensus_opencensus_exporter_trace_stackdriver",
+        "@maven//:org_apache_logging_log4j_log4j_api",
+    ],
+)
