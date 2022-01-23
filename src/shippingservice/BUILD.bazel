@@ -7,7 +7,7 @@ go_library(
         "quote.go",
         "tracker.go",
     ],
-    importpath = "main",
+    importpath = "shippingservice",
     visibility = ["//visibility:private"],
     deps = [
         "//src/shippingservice/genproto:hipstershop",  # keep

@@ -28,6 +28,7 @@ go_binary(
     visibility = ["//visibility:public"],
 )
 
+'''
 go_test(
     name = "lib_test",
     srcs = ["server_test.go"],
@@ -42,3 +43,4 @@ go_test(
         "@org_golang_google_grpc//status:go_default_library",
     ],
 )
+'''

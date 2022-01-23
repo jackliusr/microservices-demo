@@ -1,0 +1,28 @@
+load("@io_bazel_rules_docker//container:container.bzl", "container_image", "container_push")
+
+container_image(
+    name = "currencyservice",
+    base = "@node_alpine_amd64//image",
+    directory = "/usr/src/app",
+    entrypoint = [
+        "node",
+        "server.js",
+    ],
+    files = [
+        ":client.js",
+        ":data",
+        ":node_modules",
+        ":server.js",
+    ],
+    ports = [
+        "7000",
+    ],
+)
+
+container_push(
+    name = "push_currencyservice",
+    format = "Docker",
+    image = ":currencyservice",
+    registry = "hub.docker.com",
+    repository = "microservice/currencyservice",
+)
